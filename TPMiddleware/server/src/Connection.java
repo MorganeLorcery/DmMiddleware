@@ -1,34 +1,49 @@
-import service.IConnection;
-import service.IVODService;
-import service.MovieDesc;
+import service.*;
 
 import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Connection extends UnicastRemoteObject implements IConnection {
 
-    Array clientList;
-    List<MovieDesc> Movies;
+    ArrayList<Client> clientList;
+    IVODService movies;
 
-    protected Connection(int numport) throws RemoteException {
-        super(numport);
+    protected Connection() throws RemoteException {
+        super();
     }
 
     public boolean signUp(String mail, String pwd) throws RemoteException, SignUpException {
-
+        try {
+            SignUpException.controle(mail, clientList);
+            clientList.add(new Client(mail, pwd));
+            return true;
+        }
+        catch(SignUpException signUpException){
+            signUpException.printStackTrace();
+            return false;
+        }
     }
 
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialsException {
-
+        try {
+            InvalidCredentialsException.controle(mail, pwd, clientList);
+            return this.movies;
+        }
+        catch(InvalidCredentialsException invalidCredentialsException){
+            invalidCredentialsException.printStackTrace();
+            return null;
+        }
     }
 
-    public Array getClientList() {
+    public ArrayList<Client> getClientList() {
         return clientList;
     }
 
-    public List<MovieDesc> getMovies() {
-        return Movies;
+    public IVODService getMovies() {
+        return movies;
     }
 }

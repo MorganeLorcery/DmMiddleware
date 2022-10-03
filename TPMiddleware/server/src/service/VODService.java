@@ -8,7 +8,7 @@ import java.util.List;
 
 public class VODService extends UnicastRemoteObject implements IVODService {
 
-    protected VODService(int numport) throws RemoteException {
+    public VODService(int numport) throws RemoteException {
         super(numport);
     }
 
