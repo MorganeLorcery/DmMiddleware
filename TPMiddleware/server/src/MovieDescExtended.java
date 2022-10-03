@@ -1,2 +1,5 @@
-public class MovieDescExtended {
+import service.MovieDesc;
+
+public class MovieDescExtended extends MovieDesc {
+    Byte[] teaser;
 }

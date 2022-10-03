@@ -1,4 +1,5 @@
-import Service.IClientBox;
+
+import service.IClientBox;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,7 +13,7 @@ public class ClientBox extends UnicastRemoteObject implements IClientBox {
     }
 
     @Override
-    public void stream(byte[] chunck) throws RemoteException {
+    public void stream(Byte[] chunck) throws RemoteException {
         System.out.println(Arrays.toString(chunck));
     }
 }
