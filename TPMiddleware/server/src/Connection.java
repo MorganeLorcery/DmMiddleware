@@ -1,17 +1,34 @@
+import service.IConnection;
+import service.IVODService;
+import service.MovieDesc;
+
 import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
-public class Connection extends UnicastRemoteObject implements RMIInterface{
+public class Connection extends UnicastRemoteObject implements IConnection {
 
     Array clientList;
-    xxx Movies;
+    List<MovieDesc> Movies;
 
     protected Connection(int numport) throws RemoteException {
         super(numport);
     }
 
-    boolean signUp (String mail, String pwd) throws SignInFailed;
+    public boolean signUp(String mail, String pwd) throws RemoteException, SignUpException {
 
-    IVODService login(String mail, String pwd) throws InvalidCredentialsException;
+    }
+
+    public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialsException {
+
+    }
+
+    public Array getClientList() {
+        return clientList;
+    }
+
+    public List<MovieDesc> getMovies() {
+        return Movies;
+    }
 }
