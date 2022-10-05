@@ -1,11 +1,10 @@
+import Exceptions.InvalidCredentialsException;
+import Exceptions.SignUpException;
 import service.*;
 
-import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class Connection extends UnicastRemoteObject implements IConnection {
 

@@ -1,4 +1,6 @@
-package service;
+package Exceptions;
+
+import service.Client;
 
 import java.util.ArrayList;
 import java.util.Optional;
