@@ -50,14 +50,14 @@ public class Display {
         System.out.println(movieDescs);
         System.out.println("Veuillez saisir l'identifiant du film que vous souhaitez visionner");
         String ibs = sc.nextLine();
-        Bill bill = iVODService.playmovie(ibs,clientBox);
+        Bill bill = iVODService.playMovie(ibs,clientBox);
 
         while(bill==null){
             System.out.println("Film introuvable, voici le catalogue des films disponibles");
             System.out.println(movieDescs);
             System.out.println("Veuillez saisir l'identifiant du film que vous souhaitez visionner");
             ibs = sc.nextLine();
-            bill = iVODService.playmovie(ibs,clientBox);
+            bill = iVODService.playMovie(ibs,clientBox);
         }
         System.out.println("Veuillez payer "+bill +" euros");
     }

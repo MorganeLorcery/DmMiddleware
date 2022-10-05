@@ -24,17 +24,17 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     }
 
     @Override
-    public synchronized Bill playmovie(String isbn, IClientBox box) throws RemoteException {
-        final int N_BIT = 5;
+    public synchronized Bill playMovie(String isbn, IClientBox box) throws RemoteException {
+        final int NB_BIT = 5;
         Optional<MovieDesc> movieDescOptional= viewCatalog().stream().filter(movie -> movie.getIsbn().equals(isbn)).findFirst();
         System.out.println(movieDescOptional);
         if(movieDescOptional.isPresent()){
             byte[] bytes = movieDescOptional.get().getBytes();
-            box.stream(Arrays.copyOfRange(bytes,0,N_BIT));
+            box.stream(Arrays.copyOfRange(bytes,0,NB_BIT));
             new Thread(() -> {
-                for(int i=N_BIT;i<bytes.length;i+=N_BIT){
+                for(int i=NB_BIT;i<bytes.length;i+=NB_BIT){
                     try{
-                        box.stream(Arrays.copyOfRange(bytes,i,Math.min((i+N_BIT),bytes.length)));
+                        box.stream(Arrays.copyOfRange(bytes,i,Math.min((i+NB_BIT),bytes.length)));
                     }catch (RemoteException e){
                         e.printStackTrace();
                     }
